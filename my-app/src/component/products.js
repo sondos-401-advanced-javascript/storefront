@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import GridList from '@material-ui/core/GridList';
 // import GridListTile from '@material-ui/core/GridListTile';
 // import tileData from './tileData';
+import SimpleCart from './simple-cart';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +37,7 @@ const Products = props => {
     return (
         <>
         <div className="cont">
-        <h1 id="category">{props.products.activeCategory}</h1>
+        <h1 id="category">{props.category.activeCategory}</h1>
         <p>category description goes here</p>
         </div>
         
@@ -55,9 +56,10 @@ const Products = props => {
                </CardContent>
              </CardActionArea>
              <CardActions>
-               <Button size="small" color="primary">
+               {/* <Button size="small" color="primary">
                Add To Cart
-               </Button>
+               </Button> */}
+               <SimpleCart data={cat}/>
                <Button size="small" color="primary">
                View Detailes
                </Button>
@@ -73,7 +75,8 @@ const Products = props => {
 
 
 const mapStateToProps = state => ({
-    products: state.product
+    products: state.product,
+    category: state.category
 });
 
 export default connect(mapStateToProps)(Products);

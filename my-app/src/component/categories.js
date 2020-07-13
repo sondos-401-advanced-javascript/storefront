@@ -46,7 +46,7 @@ const Categories = props => {
 
 
 const mapStateToProps = state => ({
-    counter: state.product
+    counter: state.category
 });
 
 const mapDispatchToProps = { productBaseCategory };

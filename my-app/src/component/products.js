@@ -51,14 +51,11 @@ const Products = props => {
                    {cat.name}
                  </Typography>
                  <Typography variant="body2" color="textSecondary" component="p">
-                   Price: {cat.price}$ - inStock: {cat.inStock}
+                   Price: {cat.price}$ 
                  </Typography>
                </CardContent>
              </CardActionArea>
              <CardActions>
-               {/* <Button size="small" color="primary">
-               Add To Cart
-               </Button> */}
                <SimpleCart data={cat}/>
                <Button size="small" color="primary">
                View Detailes

@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import {addToCart} from '../store/cart'
+import * as actions from '../store/actions';
 
 function SimpleCart(props){
 return(
-    <Button onClick={()=>props.addToCart(props.data)} size="small" color="primary">
+    <Button onClick={()=>props.post(props.data)} size="small" color="primary">
                Add To Cart
                </Button>
 )
@@ -13,8 +13,12 @@ return(
 
 
 const mapStateToProps = state => ({
-    cart: state.cart,
-    
+    cart: state.cart,  
 });
-const mapDispatchToProps = { addToCart };
+
+const mapDispatchToProps = (dispatch, getState) => ({
+    get: ()=> dispatch(actions.getRemoteData()),
+    put: (id, data) => dispatch(actions.putRemoteData(id, data)),
+    post: (data) => dispatch(actions.postRemoteData(data))
+});
 export default connect(mapStateToProps,mapDispatchToProps)(SimpleCart);

@@ -11,20 +11,26 @@ let initialState = [
 export default (state = initialState, action) => {
     let { type, payload } = action;
 
-
-
     switch (type) {
         case 'PRODUCT':
             state = initialState;
             let products = state.filter(product => product.category === payload);
-            return {  products };
+            return { products };
         case 'CART':
             state = initialState;
             let productcart = state.filter(product => product.category === payload.category);
-            return {  products :productcart};
+            return { products: productcart };
+        case 'GET':
+            return state;
+        case 'PUT':
+            return state;
+        case 'POST':
+            return state;
+        case 'DELETE':
+            return state;
         default:
             let product = state.filter(product => product.category === state[0].category);
-            return {  products: product};
+            return { products: product };
     }
 }
 

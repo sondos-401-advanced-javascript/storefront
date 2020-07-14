@@ -1,10 +1,13 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../store/actions';
 ///////////////
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+import { Link } from 'react-router-dom';
 
 
 const ITEM_HEIGHT = 48;
@@ -22,12 +25,25 @@ function Header(props) {
     const handleClose = () => {
       setAnchorEl(null);
     };
+    const fetchData = () => {
+      props.get();
+  }
+
+    useEffect(()=>{
+        fetchData();
+    });
+    
+    
     return (
         <>
             <header>
-                <h1>OUR STORE</h1>
+              <Link to='/storefront'>
+              <h1>OUR STORE</h1>
+              </Link>
                 <div className="menu">
-                <h2>CART ({props.cart.cart})</h2>
+                  <Link to='/cart'>
+                <h2>CART ({props.cart.results.length})</h2>
+                  </Link>
       <IconButton
         aria-label="more"
         aria-controls="long-menu"
@@ -49,9 +65,10 @@ function Header(props) {
           },
         }}
       >
-        {props.cart.cartProduct.map((option,i) => (
+        {props.cart.results.map((option,i) => (
           <MenuItem key={i} selected={option === 'Pyxis'} onClick={handleClose}>
             {option.name}
+            <span className="toDelete" onClick={()=>props.delete(option._id)}>X</span>
           </MenuItem>
         ))}
       </Menu>
@@ -62,17 +79,14 @@ function Header(props) {
     );
 }
 
-///////////////////////////////////
 
-
-
-
-
-
-
-
-////////////////////////////////////
 const mapStateToProps = state => ({
-    cart: state.cart
+    cart: state.data
 });
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch, getState) => ({
+  get: ()=> dispatch(actions.getRemoteData()),
+  put: (id, data) => dispatch(actions.putRemoteData(id, data)),
+  post: (data) => dispatch(actions.postRemoteData(data)),
+  delete : (id) => dispatch(actions.deleteRemoteData(id))
+});
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

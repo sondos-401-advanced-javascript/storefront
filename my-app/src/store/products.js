@@ -17,17 +17,30 @@ export default (state = initialState, action) => {
             let products = state.filter(product => product.category === payload);
             return { products };
         case 'CART':
-            state = initialState;
-            let productcart = state.filter(product => product.category === payload.category);
-            return { products: productcart };
+            return state;
         case 'GET':
             return state;
         case 'PUT':
             return state;
         case 'POST':
-            return state;
+            // state = initialState;
+            let addCart = state.products.map(product =>{
+                if(product.name === payload.name){
+                    product.inStock--;
+                }
+                return product;
+            });
+            
+            return { products: addCart };
         case 'DELETE':
-            return state;
+            let deleteCart = state.products.map(product =>{
+                if(product.name === payload.name){
+                     product.inStock++;
+                }
+                return product;
+            });
+            
+            return { products: deleteCart };
         default:
             let product = state.filter(product => product.category === state[0].category);
             return { products: product };

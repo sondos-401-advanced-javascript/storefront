@@ -49,7 +49,7 @@ const Cart = props => {
                </CardContent>
              </CardActionArea>             
              <Button onClick={()=>props.put(change,cat,cat._id)}>Update</Button>
-             <Button onClick={()=>props.delete(cat._id)}>Delete</Button>
+             <Button onClick={()=>props.delete(cat)}>Delete</Button>
            </Card>
             )}
            </GridList>

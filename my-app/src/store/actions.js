@@ -22,9 +22,9 @@ export const putRemoteData = (change, data,id) => async dispatch => {
     });
 }
 
-export const deleteRemoteData = (id) => async dispatch => {
-    let response = await (await superagent.delete(`${api}/${id}`));
-    dispatch(deleteAction(response.body));
+export const deleteRemoteData = (product) => async dispatch => {
+    await (await superagent.delete(`${api}/${product._id}`));
+    dispatch(deleteAction(product));
 }
 
 export const postRemoteData = (data) => async dispatch => {

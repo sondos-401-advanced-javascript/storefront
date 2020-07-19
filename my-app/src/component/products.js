@@ -51,7 +51,7 @@ const Products = props => {
                    {cat.name}
                  </Typography>
                  <Typography variant="body2" color="textSecondary" component="p">
-                   Price: {cat.price}$ 
+                   Price: {cat.price}$ - inStock {cat.inStock}
                  </Typography>
                </CardContent>
              </CardActionArea>

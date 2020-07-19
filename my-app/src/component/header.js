@@ -68,7 +68,7 @@ function Header(props) {
         {props.cart.results.map((option,i) => (
           <MenuItem key={i} selected={option === 'Pyxis'} onClick={handleClose}>
             {option.name}
-            <span className="toDelete" onClick={()=>props.delete(option._id)}>X</span>
+            <span className="toDelete" onClick={()=>props.delete(option)}>X</span>
           </MenuItem>
         ))}
       </Menu>
